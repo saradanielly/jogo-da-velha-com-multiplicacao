@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@media (max-width: 600px) {
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .celula{
+        font-size: 1.5rem;   
+    }
+
+    #tabuleiro{
+        gap: 5px
+    }
+}
