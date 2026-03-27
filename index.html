@@ -3,46 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo Tabuada</title>
+    <title>Jogo da Velha com Multiplicação</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="media-query.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Passion+One:wght@400;700;900&family=Shadows+Into+Light&family=Sriracha&display=swap">
 </head>
 <body>
-    <div class="fundo-numeros"></div>
-    <header>
-        <h1>Jogo da Velha com Multiplicação</h1>
-    </header>
 
-     <div id="modo">
-        Modo de jogo:
-        <select id="modoJogo">
-            <option value="PvP">Jogador vs Jogador</option>
-            <option value="PvC">Jogador vs Computador</option>
-        </select>
-    </div>
+    <div class="container">
+        <h2 class="titulo">Batalha da Multiplicação</h2>
 
-    <div id="placar">
-        <div class="pontos">
-             ❌ : <span id="pontosX">0</span>
+        <div class="modo-jogo">
+            <label for="modoJogo">Modo:</label>
+            <select id="modoJogo">
+                <option value="PvP">Jogador vs Jogador</option>
+                <option value="PvC">Jogador vc Computador</option>
+            </select>
         </div>
 
-        <div class="pontos">
-            ⭕ : <span id="pontosO">0</span>
+        <h1 id="pergunta">2 x 5 = ?</h1>
+
+        <div class="resposta-box">
+            <span> Quanto é?</span>
+            <input id="resposta" type="number">
+            <button onclick="responder()">OK</button>
         </div>
+
+        <div class="placar">
+            <div class="ponto">❌: <span id="pontosX">0</span></div>
+            <div class="ponto">⭕: <span id="pontosO">0</span></div>
+        </div>
+
+        <div id="tabuleiro"></div>
+        <p id="mensagem"></p>
     </div>
-
-    <div id="pergunta"> </div>
-    <input type="number" id="resposta" placeholder="Digite a resposta">
-    <button onclick="responder()">Responder</button>
-
-    <div id="mensagem" ></div>
-    <div id="tabuleiro">
-    </div>
-
-    <button onclick="reiniciarJogo()">Reiniciar Jogo</button>
-    <button onclick="zerarPlacar()">Zerar Placar</button>
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -2,25 +2,36 @@ let jogadorAtual = "X";
 let tabuleiro = ["", "", "", "", "", "", "", "", ""];
 let posicaoEscolhida = null;
 let num1, num2;
-let modoJogo = "PvP"
+let modoJogo = "PvP";
+
 document.getElementById("modoJogo").addEventListener("change", (e) => {
     modoJogo = e.target.value;
 });
+    
+const seletorModo = document.getElementById("modoJogo");
+
+if (seletorModo) {
+    seletorModo.addEventListener("change", (e) => {
+        modoJogo = e.target.value;
+    });
+}
 
 let pontosX = 0; 
 let pontosO = 0;
 pontosX = parseInt(localStorage.getItem("pontosX")) || 0;
 pontosO = parseInt(localStorage.getItem("pontosO")) || 0;
 
+function criarTabuleiro() {
+    const tabuleiroHTML = document.getElementById("tabuleiro");
 
-// criar tabuleiro
-const tabuleiroHTML = document.getElementById("tabuleiro");
+    tabuleiroHTML.innerHTML = ""; // limpa (importante)
 
-for (let i = 0; i < 9; i++) {
-    const celula = document.createElement("button");
-    celula.classList.add("celula");
-    celula.onclick = () => escolherPosicao(i);
-    tabuleiroHTML.appendChild(celula);
+    for (let i = 0; i < 9; i++) {
+        const celula = document.createElement("button");
+        celula.classList.add("celula");
+        celula.onclick = () => escolherPosicao(i);
+        tabuleiroHTML.appendChild(celula);
+    }
 }
 
 // gerar nova pergunta
@@ -29,7 +40,7 @@ function gerarPergunta(isComputador = false) {
     num2 = Math.floor(Math.random() *10) +1;
 
     const perguntaDiv = document.getElementById("pergunta");
-    perguntaDiv.innerText = `Jogador ${jogadorAtual}, quanto é ${num1} x ${num2}?`;
+    perguntaDiv.innerText = `${num1} x ${num2} = ?`;
     
     if (isComputador) {
         const respostaComputador = num1 * num2;
@@ -269,22 +280,10 @@ function reiniciarJogo() {
     atualizarPlacar();
 }
 
-const fundo = document.querySelector('.fundo-numeros');
-const elementos = ['0','1','2','3','4','5','6','7','8','9','×','÷','✖️','🧮','🟢','🔢'];
+criarTabuleiro();
+gerarPergunta();
+atualizarPlacar();
 
-for (let i = 0; i < 50; i++) {
-    const span = document.createElement('span');
-    span.classList.add('numero');
-
-    span.textContent = elementos[Math.floor(Math.random() * elementos.length)];
-
-    span.style.left = Math.random() * 100 + '%';
-
-    span.style.animationDuration = (10 + Math.random() * 10) + 's';
-
-    span.style.fontSize = (20 + Math.random() * 20) + 'px';
-
-    span.style.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
-
-    fundo.appendChild(span);
-}
+// placar começar zerado; colocar opção de reiniciar o jogo; deixar em
+// destaque a mensagem de quem ganhou;
+// colocar modo computador; titulo sumiu;

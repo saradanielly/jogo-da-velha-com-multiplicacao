@@ -1,241 +1,170 @@
+@charset "UTF-8";
 
 body {
     margin: 0;
-    font-family: 'Fredoca one';
-    background: rgb(214, 234, 241);
-    overflow-y: auto;
-    text-align: center;
-} 
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #74b9ff, #55efc4);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+    min-height: 100vh;
+}
 
+.titulo {
+    width: 100%;
+    color: white;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+
+    animation: brilho 2s infinite alternate, subirDescer 2s infinite ease-in-out;
+}
+
+@keyframes brilho {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #74b9ff;
+    }
+    to {
+        text-shadow: 0 0 15px #fff, 0 0 25px #55efc4;
+    }
+}
+
+@keyframes subirDescer {
+    0% {transform: translateY(0px); }
+    100% {transform: translateY(-5px);}
+}
+
+.modo-jogo {
+    background: #ffeaa7;
+    padding: 8px 15px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #fdcb6e;
+}
+
+.modo-jogo select {
+    padding: 5px 8px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Container central */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 25px;
-
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    justify-content: flex-start;
 }
 
+/* Pergunta */
 #pergunta {
-    font-family: 'Passion One', cursive;
-    font-size: clamp(1rem, 4vw, 1.5rem);
-    font-weight: bold;
-    margin: 15px auto;
-    background: #eef2ff;
-    padding:  20px;
-    border-radius: 12px ;
-    color: #1942FA;
-    text-align: center;
-}
-
-.fundo-numeros {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.numero {
-    position: absolute;
-    font-size: 25px;
-    font-weight: bold;
-    opacity: 0.7;
-    user-select: none;
-    animation-name: flutuar;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes flutuar {
-    0% { top: 100%; transform: rotate(0deg);}
-    50% { top: 50%; transform: rotate(180deg);}
-    100% {top: -10%; transform: rotate(360deg);}
-}
-
-header {
-    
-    background: linear-gradient(45deg,  #1942FA, #1989FA);
-    padding-top: 40px;
-    text-align: center;
-
-}
-
-header > h1 {
-    font-family: 'Bungee', cursive;
-    font-weight: 500;
-    font-style: clamp(1.5rem, 5vw, 2.5rem);
-    font-size: 32px;
-    margin-top: 20px;
-    color: black;
-    border-radius: 25px;
-    padding: 0;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: none;
-}
-
-.container h1 {
-    font-family: 'Bugee', cursive;
-}
-div#modo{
-    font-family: 'Passion One', cursive;
-    border-radius: 15px;
-    padding: 15px;
-    width: 250px;
-    text-align: center;
-    margin: 20px auto;
-    color: black;
-    font-weight: bold;
-}
-
-#tabuleiro {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 10px;
-
-    width: 90vw;
-    max-width: 400px;
-    margin: 20px auto;
-}
-
-.celula.selecionada.X{
-    border: 3px solid #1942FA;
-    background-color: #9FCCFA;
-}
-
-.celula.selecionada.O{
-     border: 3px solid #1942FA;
-    background-color: #1989FA;
-}
-
-.celula.X {
-    border: 3px solid #1942FA;
-    background-color: #9FCCFA;
-    color: white;
-}
-
-.celula.O {
-    border: 3px solid #1942FA;
-    background-color: #1989FA;
-    color: white;
-}
-
-.celula {
-    width: 100%;
-    aspect-ratio: 1/1;
-    font-size: 32px;
-
-    background: #f5f5f5;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.celula:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-#pergunta {
-    font-size: 20px;
-    margin: 15px;
-}
-
-#mensagem {
-    font-weight: bold;
-    margin: 10px;
-}
-
-#placar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 48px;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
-.pontos {
-    background-color: #1942FA;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 10px;
-    font-size: 18px;
-    text-align: center;
-} 
-
-#pontosX, #pontosO {
-    display: inline-block;
+/* Caixa de resposta */
+.resposta-box {
+    background: #f6e7c1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.animar{
-    animation: pular 0.4s ease;
-}
-
-@keyframes pular {
-    0%{transform: scale(1);}
-    50%{transform: scale(1.4);}
-    100%{transform: scale(1);}
-}
-
-input#resposta {
-    padding: 12px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 2px solid #1942FA;
-    width: 120px;
-    text-align: center;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-input#resposta:focus {
-    border-color: #1942FA;
-    box-shadow: 0 0 8px rgba(37,117,252,0.6);
-}
-
-
-button {
-    font-family: 'Passion One', cursive;
-    padding: 12px 18px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #1942FA;
-
-    background: linear-gradient(45deg,  #9FCCFA, #1989FA);
-
+.resposta-box input {
     border: none;
+    padding: 10px;
     border-radius: 10px;
+    width: 80px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.resposta-box button {
+    background: #2ecc71;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Placar */
+.placar {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.ponto {
+    background: #f6e7c1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Tabuleiro */
+#tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Células */
+.celula {
+    width: 90px;
+    height: 90px;
+    background: #f1c40f;
+    border: none;
+    border-radius: 20px;
+    font-size: 32px;
     cursor: pointer;
 
-    margin: 10px;
+    /* efeito 3D */
+    box-shadow: 0 6px 0 #d4ac0d;
     transition: 0.2s;
 }
 
-button:hover {
-    transform: scale(1.05);
+.celula:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #d4ac0d;
 }
 
-input, button {
-    width: 90%;
-    max-width: 300px;
-    display: block;
-    margin: 10px auto;
-    font-size: 1rem;
-} 
+/* X e O */
+.celula.X {
+    color: #e74c3c;
+}
+
+.celula.O {
+    color: #8e44ad;
+}
+
+/* Seleção */
+.selecionada {
+    outline: 3px solid white;
+}
+
+/* Mensagem */
+#mensagem {
+    margin-top: 15px;
+    font-weight: bold;
+    color: white;
+}
