@@ -33,6 +33,8 @@ function gerarPergunta(isComputador = false) {
 
     const perguntaDiv = document.getElementById("pergunta");
     perguntaDiv.innerText = `${num1} x ${num2} = ?`;
+
+    document.getElementById('mensagem').innerText= "";
     
     if (isComputador) {
         const respostaComputador = num1 * num2;
