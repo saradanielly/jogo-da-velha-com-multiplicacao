@@ -3,18 +3,28 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #74b9ff, #55efc4);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding-top: 40px;
     min-height: 100vh;
+
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #9b59b6, #3498db, #00ff99, #00ffff);
+    background-size: 400% 400%;
+    animation: fundoNeon 15s ease infinite;
+}
+
+@keyframes fundoNeon {
+    0% { background-position: 0% 50%;}
+    50% { background-position: 100% 50%;}
+    100% { background-position: 0% 50%;}
 }
 
 .titulo {
+    font-family: 'Passion One', cursive;
     width: 100%;
-    color: white;
-    font-size: 32px;
+    color: #f1c40f;
+    font-size: 52px;
     text-align: center;
     margin-bottom: 10px;
     display: block;
@@ -164,7 +174,34 @@ body {
 
 /* Mensagem */
 #mensagem {
-    margin-top: 15px;
+    margin-top: 20px;
     font-weight: bold;
-    color: white;
+    font-size: 24px;
+    color: #e74c3c;
+    text-align: center;
+}
+
+.botoes-controle {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.botao-controle {
+    background: #ffeaa7;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #fdcb6e;
+    transition: 0.2s;
+}
+.botao-controle:hover {
+    background: #d4ac0d;
 }

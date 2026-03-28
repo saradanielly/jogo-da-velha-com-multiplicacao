@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Velha com Multiplicação</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Passion+One:wght@400;700;900&family=Shadows+Into+Light&family=Sriracha&display=swap"">
 </head>
 <body>
 
@@ -15,7 +16,7 @@
             <label for="modoJogo">Modo:</label>
             <select id="modoJogo">
                 <option value="PvP">Jogador vs Jogador</option>
-                <option value="PvC">Jogador vc Computador</option>
+                <option value="PvC">Jogador vs Computador</option>
             </select>
         </div>
 
@@ -26,14 +27,19 @@
             <input id="resposta" type="number">
             <button onclick="responder()">OK</button>
         </div>
-
+        <p id="mensagem"></p>
         <div class="placar">
             <div class="ponto">❌: <span id="pontosX">0</span></div>
             <div class="ponto">⭕: <span id="pontosO">0</span></div>
         </div>
 
         <div id="tabuleiro"></div>
-        <p id="mensagem"></p>
+        
+
+        <div class="botoes-controle">
+            <button onclick="reiniciarJogo()" class="botao-controle">Reiniciar</button>
+            <button onclick="zerarPlacar()" class="botao-controle">Zerar Placar</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

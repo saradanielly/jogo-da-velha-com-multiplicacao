@@ -8,14 +8,6 @@ document.getElementById("modoJogo").addEventListener("change", (e) => {
     modoJogo = e.target.value;
 });
     
-const seletorModo = document.getElementById("modoJogo");
-
-if (seletorModo) {
-    seletorModo.addEventListener("change", (e) => {
-        modoJogo = e.target.value;
-    });
-}
-
 let pontosX = 0; 
 let pontosO = 0;
 pontosX = parseInt(localStorage.getItem("pontosX")) || 0;
@@ -57,7 +49,7 @@ function escolherPosicao(index) {
     celulas.forEach(c => c.classList.remove("selecionada"));
 
     posicaoEscolhida = index;
-    celulas[index].classList.add("selecionada", jogadorAtual);
+    celulas[index].classList.add("selecionada");
 }
 
 function verificarResposta(resposta) {
@@ -99,7 +91,7 @@ const celula = document.querySelectorAll(".celula")[posicaoEscolhida];
     } else {
         document.getElementById("mensagem").innerText =
         `Resposta errada! Jogador ${jogadorAtual} perdeu a sua vez.`
-        celula.classList.remove("selecionada", "X", "O");
+        celula.classList.remove("selecionada");
     
     }
 
@@ -213,18 +205,26 @@ function computadorResponder() {
     } 
 
     posicaoEscolhida = escolha;
-    document.querySelectorAll(".celula")[posicaoEscolhida].classList.add("selecionada");
-    
 
-    // gerar pergunta do computador (não precisa do jogador humano)
-    num1 = Math.floor(Math.random() * 10) + 1;
-    num2 = Math.floor(Math.random() * 10) + 1;
-
-    document.getElementById("pergunta").innerText = `Computador: quanto é ${num1} x ${num2}?`;
-
-    // computador sempre acerta
     setTimeout(() => {
-        verificarResposta(num1 * num2);
+        tabuleiro[posicaoEscolhida] = jogadorAtual;
+        atualizarTabuleiro();
+
+        if (verificarVitoria()) {
+            pontosO++;
+            atualizarPlacar();
+            document.getElementById("mensagem").innerText = "Computador venceu!";
+            desativarTabuleiro();
+            return;
+        }
+
+        if (verificarEmpate()) {
+            document.getElementById("mensagem").innerText = "Empate!";
+            desativarTabuleiro();
+            return;
+        }
+
+        trocarJogador();
     }, 500);
 }
 
@@ -275,15 +275,10 @@ function reiniciarJogo() {
         c.classList.remove("X", "O", "selecionada");
     });
 
-
-    gerarPergunta();
-    atualizarPlacar();
 }
 
 criarTabuleiro();
 gerarPergunta();
 atualizarPlacar();
 
-// placar começar zerado; colocar opção de reiniciar o jogo; deixar em
-// destaque a mensagem de quem ganhou;
-// colocar modo computador; titulo sumiu;
+// deixar em destaque a mensagem de quem ganhou;
