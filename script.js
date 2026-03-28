@@ -111,7 +111,7 @@ function responder() {
     verificarResposta(resposta);
 
     campo.value = "";
-    campo.focus();
+    campo.blur();
 }
  document.getElementById("resposta").addEventListener("keypress", function (e){
     if(e.key === "Enter"){
