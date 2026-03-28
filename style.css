@@ -9,7 +9,7 @@ body {
     padding-top: 40px;
     min-height: 100vh;
 
-    background: linear-gradient(45deg, #ff6b6b, #feca57, #9b59b6, #3498db, #00ff99, #00ffff);
+    background: linear-gradient(45deg, #feca57, #3498db, #00ff99, #00ffff);
     background-size: 400% 400%;
     animation: fundoNeon 15s ease infinite;
 }
