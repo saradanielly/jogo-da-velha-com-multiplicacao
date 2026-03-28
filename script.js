@@ -113,13 +113,9 @@ function responder() {
     verificarResposta(resposta);
 
     campo.value = "";
+    
     document.getElementById("focoAux").focus();
 }
- document.getElementById("resposta").addEventListener("keypress", function (e){
-    if(e.key === "Enter"){
-        responder();
-    }
- });
 
 function atualizarPlacar() {
     const placarX = document.getElementById("pontosX");
