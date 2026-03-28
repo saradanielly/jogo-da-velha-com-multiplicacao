@@ -280,5 +280,3 @@ function reiniciarJogo() {
 criarTabuleiro();
 gerarPergunta();
 atualizarPlacar();
-
-// deixar em destaque a mensagem de quem ganhou;
