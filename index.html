@@ -6,7 +6,7 @@
     <title>Jogo da Velha com Multiplicação</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="media-query.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Passion+One:wght@400;700;900&family=Shadows+Into+Light&family=Sriracha&display=swap"">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Passion+One:wght@400;700;900&family=Shadows+Into+Light&family=Sriracha&display=swap">
 </head>
 <body>
 
@@ -23,11 +23,13 @@
 
         <h1 id="pergunta">2 x 5 = ?</h1>
 
-        <div class="resposta-box">
-            <span> Quanto é?</span>
-            <input id="resposta" type="number">
-            <button onclick="responder()">OK</button>
-        </div>
+        
+            <form class="resposta-box" onsubmit="responder(); return false;">
+                <span> Quanto é?</span>
+                <input id="resposta" type="number">
+                <button type="submit">OK</button>
+            </form>
+        
         <p id="mensagem"></p>
         <div class="placar">
             <div class="ponto">❌: <span id="pontosX">0</span></div>
@@ -43,7 +45,6 @@
         </div>
     </div>
 
-    <input id="resposta" type="text" inputmode="numeric" pattern="[0-9]*">
     <script src="script.js"></script>
 </body>
 </html>

@@ -27,20 +27,16 @@ function criarTabuleiro() {
 }
 
 // gerar nova pergunta
-function gerarPergunta(isComputador = false) {
+function gerarPergunta(isComputador = false, limparMensagem = true) {
     num1 = Math.floor(Math.random() *10) + 1;
     num2 = Math.floor(Math.random() *10) +1;
 
     const perguntaDiv = document.getElementById("pergunta");
     perguntaDiv.innerText = `${num1} x ${num2} = ?`;
 
-    document.getElementById('mensagem').innerText= "";
     
-    if (isComputador) {
-        const respostaComputador = num1 * num2;
-        setTimeout(() => {
-            verificarResposta(respostaComputador);
-        }, 500);
+    if (limparMensagem) {
+        document.getElementById('mensagem').innerText= "";
       }
 }
 
@@ -94,7 +90,16 @@ const celula = document.querySelectorAll(".celula")[posicaoEscolhida];
         document.getElementById("mensagem").innerText =
         `Resposta errada! Jogador ${jogadorAtual} perdeu a sua vez.`
         celula.classList.remove("selecionada");
-    
+    posicaoEscolhida = null;
+
+    jogadorAtual = jogadorAtual === "X" ? "O" : "X";
+
+    if (modoJogo === "PvC" && jogadorAtual === "O") {
+        computadorResponder();
+    } else {
+    gerarPergunta(false);
+    }
+    return;
     }
 
     posicaoEscolhida = null;
@@ -102,19 +107,19 @@ const celula = document.querySelectorAll(".celula")[posicaoEscolhida];
 }
 
 function responder() {
-    const campo = document.getElementById("resposta")
-    const resposta = parseInt(campo.value);
+    const campo = document.getElementById("resposta");
+    const valor = campo.value.trim();
 
-    if (isNaN(resposta)) {
+    if (valor === "") {
         document.getElementById("mensagem").innerText = "Digite uma resposta!";
     return;
     }
-
+    const resposta = parseInt(valor);
     verificarResposta(resposta);
 
     campo.value = "";
+    campo.focus();
     
-    document.getElementById("focoAux").focus();
 }
 
 function atualizarPlacar() {
@@ -177,8 +182,10 @@ function trocarJogador() {
 
 function computadorResponder() {
     // escolhe uma posição aleatória vazia
-    const vazias = tabuleiro.map((val, idx) => val === "" ? idx : null).filter(v => v !== null);
+    const vazias = tabuleiro.map((v,i) => v==="" ? i:null).filter(i=>i!== null);
     if (vazias.length === 0) return;
+
+    posicaoEscolhida = vazias[Math.floor(Math.random()*vazias.length)]
 
     let escolha = null;
 
@@ -222,7 +229,9 @@ function computadorResponder() {
             return;
         }
 
-        trocarJogador();
+        jogadorAtual = "X";
+        gerarPergunta(false);
+        posicaoEscolhida = null;
     }, 500);
 }
 
@@ -248,6 +257,9 @@ function verificarEmpate() {
 function desativarTabuleiro() {
     const celulas = document.querySelectorAll(".celula");
     celulas.forEach(c => c.disabled = true);
+
+    const campoResposta = document.getElementById("resposta");
+    campoResposta.disabled = true;
 };
 
 
@@ -264,7 +276,10 @@ function reiniciarJogo() {
     atualizarTabuleiro();
 
     document.getElementById("mensagem").innerText = "";
-    document.getElementById("resposta").value = "";
+    const campoResposta = document.getElementById("resposta");
+    campoResposta.value = "";
+    campoResposta.disabled = false;
+    document.getElementById("resposta").focus();
 
 // reativar as células
     const celulas = document.querySelectorAll (".celula");
@@ -278,3 +293,11 @@ function reiniciarJogo() {
 criarTabuleiro();
 gerarPergunta();
 atualizarPlacar();
+
+const campoResposta = document.getElementById("resposta");
+
+campoResposta.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        responder();
+    }
+});
