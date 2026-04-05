@@ -1,15 +1,63 @@
 @charset "UTF-8";
 
 @media (max-width: 600px) {
+
+    body {
+        background-image: url(folha-de-caderno_celular.jpg);
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+        padding: 10px;
+        
+    }
+
     .titulo{
-        font-size: 1.5rem;
+        font-size: 32px;
+        text-align: center;
     }
 
     .celula{
-        font-size: 1.5rem;   
+        width: 90px;
+        height: 90px;
+        font-size: 2rem;
+        border-radius: 10px;   
+
+        touch-action: manipulation;
     }
 
     #tabuleiro{
-        gap: 5px
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        max-width: 300px;
+        margin: 15px auto;
+    }
+
+    input, button {
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 8px;
+    }
+
+    #pergunta {
+        font-size: 1.3rem;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #mensagem {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+    min-height: 20px;
+    }
+
+    #placar {
+        display: flex;
+        justify-content: space-around;
+        font-size: 1.1rem;
+        margin-top: 10px;
     }
 }

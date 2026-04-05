@@ -3,7 +3,8 @@
 body {
     background-image: url(folha-de-caderno_91756-90.jpg);
     background-repeat: no-repeat;
-    font-family: 'Passion', cursive;
+    
+    font-family: 'Passion One', cursive;
     margin: 0;
     display: flex;
     justify-content: center;

@@ -104,6 +104,7 @@ const celula = document.querySelectorAll(".celula")[posicaoEscolhida];
 
     posicaoEscolhida = null;
     trocarJogador();
+    gerarPergunta(false);
 }
 
 function responder() {
@@ -262,11 +263,6 @@ function desativarTabuleiro() {
     campoResposta.disabled = true;
 };
 
-
-// iniciar jogo
-gerarPergunta();
-atualizarPlacar();
-
 // funçao reiniciar jogo
 function reiniciarJogo() {
     tabuleiro = ["", "", "", "", "", "", "", "", ""];
@@ -287,7 +283,7 @@ function reiniciarJogo() {
         c.disabled = false;
         c.classList.remove("X", "O", "selecionada");
     });
-
+    gerarPergunta();
 }
 
 criarTabuleiro();
